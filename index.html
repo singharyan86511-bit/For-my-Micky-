@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Someone Very Special ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ff758c,#ff7eb3);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Intro screen */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:#ff4d6d;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+#intro button{
+    padding:14px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#ff4d6d;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+/* Main content */
+.container{
+    padding:30px;
+}
+
+h1{
+    animation:zoom 2s infinite alternate;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+}
+
+/* Image styling (FULL image, not cropped) */
+.photo{
+    max-width:90%;
+    max-height:70vh;
+    object-fit:contain;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,255,255,0.6);
+    margin-top:20px;
+}
+
+/* slider */
+.slider{
+    position:relative;
+}
+
+.slide{
+    display:none;
+}
+
+.slide.active{
+    display:block;
+}
+
+/* love message card */
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:20px;
+    margin-top:25px;
+}
+
+/* floating hearts */
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:22px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(0);}
+    to{transform:translateY(-110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>For Someone Very Special ❤️</h1>
+    <p>Tap below 🙂</p>
+    <button onclick="startSite()">Open</button>
+</div>
+
+<!-- SONG -->
+<audio id="song" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN -->
+<div class="container">
+
+<h1>Hey Micky ❤️</h1>
+
+<div class="slider">
+
+    <img src="micky.jpg" class="photo slide active">
+    <img src="micky2.jpg" class="photo slide">
+    <img src="micky3.jpg" class="photo slide">
+
+</div>
+
+<div class="card">
+<h2>
+Thanks Micky ❤️ for coming into my life 🧬<br><br>
+
+Thanks for being my everything ❤️<br><br>
+
+Your presence makes days brighter and moments happier 🙂<br><br>
+
+Wishing you smiles, good memories, and lots of positivity always ✨
+</h2>
+</div>
+
+</div>
+
+<script>
+
+// Start site + music
+function startSite(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("song").play();
+}
+
+// Slider
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(()=>{
+slides[index].classList.remove("active");
+index = (index+1) % slides.length;
+slides[index].classList.add("active");
+},3000);
+
+// Hearts
+function createHeart(){
+let heart = document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+}
+
+setInterval(createHeart,500);
+
+</script>
+
+</body>
+</html>
